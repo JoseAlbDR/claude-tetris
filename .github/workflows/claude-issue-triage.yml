@@ -36,4 +36,4 @@ jobs:
                - Un enfoque sugerido para abordar la solución (sin implementarla todavía).
 
             No hagas cambios de código ni abras pull requests, solo el análisis, los labels y el comentario.
-          claude_args: '--allowed-tools "Bash(gh issue edit:*),Bash(gh issue comment:*),Bash(gh label list:*)"'
+          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh issue edit:*),Bash(gh issue comment:*),Bash(gh label list:*)"'
