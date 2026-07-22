@@ -8,7 +8,13 @@
 </head>
 <body>
   <div class="wrapper">
-    <h1 class="game-title">TETRIS</h1>
+    <div class="title-row">
+      <h1 class="game-title">TETRIS</h1>
+      <label class="theme-switch" title="Cambiar tema claro/oscuro">
+        <input type="checkbox" id="theme-switch" />
+        <span class="slider"></span>
+      </label>
+    </div>
     <div class="game-container">
       <canvas id="board" width="300" height="600"></canvas>
 
