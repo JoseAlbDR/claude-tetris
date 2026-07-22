@@ -15,26 +15,44 @@
         <span class="slider"></span>
       </label>
     </div>
+    <div id="objective-hud" class="objective-hud hidden"></div>
+
     <div class="game-container">
       <canvas id="board" width="300" height="600"></canvas>
 
       <aside class="panel">
-        <div class="panel-section">
-          <span class="label">SCORE</span>
-          <span class="value" id="score">0</span>
+        <div class="stats-row">
+          <div class="panel-section stat">
+            <span class="label">SCORE</span>
+            <span class="value" id="score">0</span>
+          </div>
+          <div class="panel-section stat">
+            <span class="label">LINES</span>
+            <span class="value" id="lines">0</span>
+          </div>
+          <div class="panel-section stat">
+            <span class="label">LEVEL</span>
+            <span class="value" id="level">1</span>
+          </div>
         </div>
-        <div class="panel-section">
-          <span class="label">LINES</span>
-          <span class="value" id="lines">0</span>
-        </div>
-        <div class="panel-section">
-          <span class="label">LEVEL</span>
-          <span class="value" id="level">1</span>
+
+        <div class="previews-row">
+          <div class="panel-section">
+            <span class="label">NEXT</span>
+            <canvas id="next-canvas" width="90" height="90"></canvas>
+          </div>
+
+          <div class="panel-section">
+            <span class="label">HOLD</span>
+            <canvas id="hold-canvas" width="90" height="90"></canvas>
+          </div>
         </div>
 
         <div class="panel-section">
-          <span class="label">NEXT</span>
-          <canvas id="next-canvas" width="120" height="120"></canvas>
+          <span class="label">ENERGÍA</span>
+          <div class="energy-bar">
+            <div id="energy-fill" class="energy-fill"></div>
+          </div>
         </div>
 
         <div class="panel-section controls">
@@ -44,16 +62,40 @@
             <li><kbd>↑</kbd> rotar</li>
             <li><kbd>↓</kbd> bajar</li>
             <li><kbd>Space</kbd> caída</li>
+            <li><kbd>C</kbd> hold</li>
             <li><kbd>P</kbd> pausa</li>
           </ul>
         </div>
       </aside>
     </div>
 
+    <div id="toast-layer" class="toast-layer"></div>
+
+    <div id="skill-prompt" class="skill-prompt hidden">
+      <p class="skill-title">HABILIDAD LISTA</p>
+      <ul>
+        <li><kbd>1</kbd> Ver próximas 5 piezas</li>
+        <li><kbd>2</kbd> Intercambiar pieza</li>
+        <li><kbd>3</kbd> Ralentizar 10s</li>
+        <li><kbd>4</kbd> Deshacer última jugada</li>
+      </ul>
+    </div>
+
     <div id="overlay" class="overlay hidden">
       <div class="overlay-box">
         <p id="overlay-title">GAME OVER</p>
         <p id="overlay-score"></p>
+        <div id="mode-select" class="mode-select">
+          <button data-mode="marathon" class="mode-btn">Maratón</button>
+          <button data-mode="challenge" class="mode-btn">Desafío</button>
+        </div>
+        <ul id="challenge-list" class="challenge-list hidden">
+          <li><button data-challenge="lines-in-time">Limpia 40 líneas en 2 minutos</button></li>
+          <li><button data-challenge="garbage-rising">Basura subiendo cada 10s</button></li>
+          <li><button data-challenge="preset-board">Bloques fijos pre-colocados</button></li>
+          <li><button data-challenge="invisible-landed">Piezas invisibles al tocar suelo</button></li>
+          <li><button data-challenge="reverse-rotation">Rotación inversa en niveles altos</button></li>
+        </ul>
         <button id="restart-btn">Reiniciar</button>
       </div>
     </div>

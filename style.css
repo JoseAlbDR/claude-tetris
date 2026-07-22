@@ -142,10 +142,11 @@ body {
 
 /* ---- Panel lateral ---- */
 .panel {
-  width: 160px;
+  width: 200px;
+  height: 600px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
   padding-top: 4px;
 }
 
@@ -164,14 +165,35 @@ body {
 
 .value {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--value-color);
   letter-spacing: 1px;
 }
 
-#next-canvas {
+.stats-row {
+  display: flex;
+  gap: 10px;
+}
+
+.stats-row .stat {
+  flex: 1;
+}
+
+.previews-row {
+  display: flex;
+  gap: 10px;
+}
+
+.previews-row .panel-section {
+  flex: 1;
+}
+
+#next-canvas, #hold-canvas {
   display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
   border: 1px solid var(--board-border);
   background: var(--board-bg);
   border-radius: 4px;
@@ -256,4 +278,149 @@ kbd {
 
 #restart-btn:hover {
   background: var(--btn-hover);
+}
+
+/* ---- Hold ---- */
+#hold-canvas {
+  transition: opacity 0.15s;
+}
+
+#hold-canvas.dim {
+  opacity: 0.35;
+}
+
+/* ---- Energía ---- */
+.energy-bar {
+  width: 100%;
+  height: 10px;
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.energy-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--value-color);
+  transition: width 0.2s;
+}
+
+/* ---- Toasts ---- */
+.toast-layer {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.toast {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--value-color);
+  text-shadow: 0 0 12px var(--title-shadow);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Objetivo de desafío ---- */
+.objective-hud {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: var(--value-color);
+  margin-bottom: 8px;
+}
+
+.objective-hud.hidden {
+  display: none;
+}
+
+/* ---- Skill prompt ---- */
+.skill-prompt {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--overlay-bg);
+  border: 1px solid var(--board-border);
+  border-radius: 6px;
+  padding: 10px 16px;
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.skill-prompt.hidden {
+  display: none;
+}
+
+.skill-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--overlay-title);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.skill-prompt ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-prompt li {
+  font-size: 12px;
+  color: var(--control-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- Selector de modo / desafíos ---- */
+.mode-select {
+  display: flex;
+  gap: 10px;
+}
+
+.mode-btn, .challenge-list button {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.15s;
+}
+
+.mode-btn:hover, .challenge-list button:hover {
+  background: var(--btn-hover);
+}
+
+.challenge-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 260px;
+}
+
+.challenge-list.hidden, .mode-select.hidden {
+  display: none;
 }
